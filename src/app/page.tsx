@@ -1,20 +1,16 @@
 "use client";
 
+import { LoginFormType } from "@/types";
 import { SubmitHandler, useForm } from "react-hook-form";
-
-interface LoginForm {
-  email: string;
-  password: string;
-}
 
 const Main = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginForm>();
+  } = useForm<LoginFormType>();
 
-  const onSubmit: SubmitHandler<LoginForm> = (data) => {
+  const onSubmit: SubmitHandler<LoginFormType> = (data) => {
     console.log(data);
   };
 

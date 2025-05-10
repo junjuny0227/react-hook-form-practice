@@ -1,6 +1,8 @@
 "use client";
 
+import { loginSchema } from "@/schemas";
 import { LoginFormType } from "@/types";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 const Main = () => {
@@ -8,7 +10,9 @@ const Main = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormType>();
+  } = useForm<LoginFormType>({
+    resolver: zodResolver(loginSchema),
+  });
 
   const onSubmit: SubmitHandler<LoginFormType> = (data) => {
     console.log(data);
@@ -29,13 +33,13 @@ const Main = () => {
               Email
             </label>
             <input
-              {...register("email", { required: true })}
+              {...register("email")}
               id="email"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
-                Email은 필수 입력 항목입니다.
+                {errors.email.message}
               </p>
             )}
           </div>
@@ -47,14 +51,14 @@ const Main = () => {
               Password
             </label>
             <input
-              {...register("password", { required: true })}
+              {...register("password")}
               type="password"
               id="password"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">
-                Password은 필수 입력 항목입니다.
+                {errors.password.message}
               </p>
             )}
           </div>

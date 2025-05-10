@@ -4,6 +4,7 @@ import { loginSchema } from "@/schemas";
 import { LoginFormType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const Main = () => {
   const {
@@ -16,6 +17,7 @@ const Main = () => {
 
   const onSubmit: SubmitHandler<LoginFormType> = (data) => {
     console.log(data);
+    toast.success("로그인 성공");
   };
 
   return (

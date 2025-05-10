@@ -17,7 +17,11 @@ const Main = () => {
 
   const onSubmit: SubmitHandler<LoginFormType> = (data) => {
     console.log(data);
-    toast.success("로그인 성공");
+    toast.success("로그인에 성공했습니다");
+  };
+
+  const onError = () => {
+    toast.error("로그인에 실패했습니다");
   };
 
   return (
@@ -26,7 +30,7 @@ const Main = () => {
         <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
           React-Hook-Form practice
         </h1>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit, onError)} className="space-y-4">
           <div>
             <label
               htmlFor="email"
